@@ -38,9 +38,9 @@ type Response struct {
 	CurrentUser  CurrentUser `json:"current_user,omitempty"`
 }
 
-// Decode decodes the response from r writing the result into the struct
+// decodeResponse decodes the response from r writing the result into the struct
 // pointed to by want. From: https://gist.github.com/kylelemons/2407845
-func decode(r io.Reader, want interface{}) error {
+func decodeResponse(r io.Reader, want interface{}) error {
 	resp := &Response{Result: want}
 	if err := json.NewDecoder(r).Decode(resp); err != nil {
 		return err
@@ -77,7 +77,7 @@ func (w *WakaTime) getURL(url string, decode bool, result interface{}) error {
 	}
 	defer resp.Body.Close()
 	if decode {
-		if err := decode(resp.Body, &result); err != nil {
+		if err := decodeResponse(resp.Body, &result); err != nil {
 			fmt.Printf("%q: error %q\n", resp.Body, err)
 			return err
 		}
