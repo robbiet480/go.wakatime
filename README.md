@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/robbiet480/go.wakatime.svg)](https://travis-ci.org/robbiet480/go.wakatime)
 [![GoDoc](https://godoc.org/github.com/robbiet480/go.wakatime?status.svg)](https://godoc.org/github.com/robbiet480/go.wakatime)
 
 # go.wakatime
