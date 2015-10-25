@@ -62,6 +62,9 @@ func NewWakaTime(key string) *WakaTime {
 
 // getURL is a handy wrapper function for interfacing with the WakaTime API
 func (w *WakaTime) getURL(url string, decode bool, result interface{}) error {
+	if w.APIKey == "" {
+		return errors.New("No API key provided!")
+	}
 	fullURL := fmt.Sprintf("%s%s", APIBaseURL, url)
 	req, err := http.NewRequest("GET", fullURL, nil)
 	b64edKey := base64.StdEncoding.EncodeToString([]byte(w.APIKey))
